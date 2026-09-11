@@ -2,11 +2,13 @@ package org.AlquilerApi.dtos.Categoria;
 
 import lombok.Getter;
 import lombok.Setter;
-import java.io.Serializable;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
-public class CategoriaModificar implements Serializable {
+public class CategoriaModificar {
     private Integer id;
     private String nombre;
+    private BigDecimal tarifaBaseDiaria;
 }
