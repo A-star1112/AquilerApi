@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/api/categorias")
@@ -42,12 +41,12 @@ public class CategoriaControlador {
 
     @GetMapping("/{id}")
     public ResponseEntity<CategoriaSalida> buscarPorId(@PathVariable Integer id) {
-        try {
-            CategoriaSalida categoriaSalida = categoriaServicios.obtenerPorId(id);
+        CategoriaSalida categoriaSalida = categoriaServicios.obtenerPorId(id);
+
+        if (categoriaSalida != null) {
             return ResponseEntity.ok(categoriaSalida);
-        } catch (NoSuchElementException e) {
-            return ResponseEntity.notFound().build();
         }
+        return ResponseEntity.notFound().build();
     }
 
     @PostMapping
